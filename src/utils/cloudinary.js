@@ -28,4 +28,32 @@ const uploadOnCloudinary = async (localFilePath) => {
 
 
 
-export {uploadOnCloudinary}
+const deleteFromCloudinary = async (oldImageUrl) => {
+    try {
+        if(!oldImageUrl)  return null;
+
+        const startIdx = oldImageUrl.lastIndexOf('/');
+        const publicId = oldImageUrl.slice(startIdx+ 1, oldImageUrl.length - 4);
+
+        console.log("public ID  is  : ", publicId);
+
+        if(!publicId)  return null;
+
+        const response = await cloudinary.uploader.destroy(publicId , {
+            resource_type : "image"
+        })
+
+        console.log("file deleted from cloudinary response : ", response)
+        return response;
+
+        
+    } catch (error) {
+        console.log("Error occured while deleting old avatar file: ", error)
+        return null;
+    }
+}
+
+
+
+
+export {uploadOnCloudinary , deleteFromCloudinary }
