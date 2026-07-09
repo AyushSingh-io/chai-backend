@@ -119,3 +119,10 @@ dist
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
 .DS_Store
+
+
+# Temporary uploads (used before uploading files to Cloudinary)
+public/temp/*
+
+# Keep the temp directory in Git
+!public/temp/.gitkeep
